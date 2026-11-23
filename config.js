@@ -5,7 +5,7 @@
 */
 window.PLATFORM_CONFIG = {
   brandName: "Food Hub",
-  whatsapp: "966500000000",
+  whatsapp: "966550865064",
   currency: "SAR",
   location: "Makkah, Saudi Arabia",
   announcement: "Multiple restaurants. One easy order. • Delivered to your hotel.",
