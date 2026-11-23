@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#171717">
+  <title>Food Hub | Your favourite restaurants, one order</title>
+  <meta name="description" content="Explore restaurants, choose your favourite food and order for hotel delivery.">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .restaurant-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:28px 0 36px}
+    .restaurant-tile{background:#fff;border:1px solid #eee9e0;border-radius:12px;padding:17px 14px;text-align:left;display:flex;align-items:center;gap:12px;transition:.2s;min-width:0}
+    .restaurant-tile.active,.restaurant-tile:hover{border-color:var(--accent);box-shadow:0 9px 25px #0000000b;transform:translateY(-2px)}
+    .restaurant-logo{width:45px;height:45px;border-radius:12px;background:#f4e9df;display:grid;place-items:center;color:var(--accent);font:700 20px var(--serif);flex:none;overflow:hidden}
+    .restaurant-logo img{width:100%;height:100%;object-fit:cover}
+    .restaurant-tile strong,.restaurant-tile small{display:block;overflow:hidden;text-overflow:ellipsis}
+    .restaurant-tile strong{font-size:12px}.restaurant-tile small{font-size:9px;color:var(--muted);margin-top:4px}
+    .restaurant-label{font-size:9px;letter-spacing:.08em;color:var(--accent);font-weight:800;text-transform:uppercase;margin-bottom:6px}
+    .food-restaurant{font-size:9px;color:var(--accent);font-weight:800;margin-bottom:7px}
+    .checkout-fields{display:grid;gap:10px;margin:14px 0}
+    .checkout-fields label{font-size:10px;color:var(--muted);display:grid;gap:5px}
+    .checkout-fields input,.checkout-fields select,.checkout-fields textarea{width:100%;padding:11px;border:1px solid var(--line);border-radius:6px;background:white;font:12px var(--sans);color:var(--ink)}
+    .fee-note{font-size:10px;color:var(--muted);line-height:1.5}
+    @media(max-width:700px){.restaurant-strip{grid-template-columns:repeat(2,1fr);gap:9px}.restaurant-tile{padding:12px 9px;gap:8px}.restaurant-logo{width:37px;height:37px}}
+    @media(max-width:420px){.restaurant-tile strong{font-size:10px}.restaurant-tile small{font-size:8px}}
+  </style>
+</head>
+<body>
+  <div class="announcement" id="announcement">Multiple restaurants. One easy order. • Delivered to your hotel.</div>
+  <header class="site-header">
+    <a class="brand" href="#"><span class="brand-mark">F</span><span id="brandName">Food Hub</span></a>
+    <nav class="desktop-nav" aria-label="Main navigation"><a href="#restaurants" data-i18n="navRestaurants">Restaurants</a><a href="#menu" data-i18n="navMenu">Food menu</a><a href="#how" data-i18n="navHow">How it works</a></nav>
+    <div class="header-actions"><button class="lang-toggle" id="langToggle" type="button">عربي</button><button class="cart-button" id="openCart" type="button"><span data-i18n="cart">Your order</span><span class="cart-count" id="cartCount">0</span></button><button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button></div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy"><p class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="heroEyebrow">YOUR CRAVINGS, YOUR CHOICE</span></p>
+        <h1 data-i18n="heroTitle">More choices.<br><em>One easy order.</em></h1>
+        <p class="hero-description" data-i18n="heroText">Explore food from your favourite restaurants. Add items from different places to one cart and get them delivered to your hotel.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#restaurants" data-i18n="explore">Explore restaurants <span>↗</span></a><a class="text-link" href="#how" data-i18n="howItWorks">How it works</a></div>
+        <div class="hero-proof"><div class="avatar-stack"><span>☺</span><span>☺</span><span>☺</span></div><div><strong data-i18n="hotelDelivery">Hotel delivery</strong><small data-i18n="localService">Personal ordering service</small></div></div>
+      </div>
+      <div class="hero-visual"><div class="hero-image"></div><div class="floating-note"><span class="note-icon">✦</span><div><strong data-i18n="manyRestaurants">Many restaurants</strong><small data-i18n="oneCart">One combined cart</small></div></div><div class="hero-stamp">FOOD<br>YOUR WAY</div></div>
+    </section>
+
+    <section class="benefits"><div><span class="benefit-icon">✳</span><strong data-i18n="benefit1">More food choices</strong><small data-i18n="benefit1sub">Explore multiple menus</small></div><div><span class="benefit-icon">⌁</span><strong data-i18n="benefit2">Hotel delivery</strong><small data-i18n="benefit2sub">We bring your order</small></div><div><span class="benefit-icon">♡</span><strong data-i18n="benefit3">Simple ordering</strong><small data-i18n="benefit3sub">Confirm on WhatsApp</small></div></section>
+
+    <section class="menu-section section-wrap" id="restaurants">
+      <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="restaurantEyebrow">PICK YOUR RESTAURANTS</span></p><h2 data-i18n="restaurantTitle">Good food, <em>great choices.</em></h2></div><p data-i18n="restaurantIntro">Choose one restaurant or mix your favourites. Add food from different restaurants to the same cart.</p></div>
+      <div class="restaurant-strip" id="restaurantList"></div>
+    </section>
+    <section class="menu-section section-wrap" id="menu" style="padding-top:0">
+      <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="menuEyebrow">THE FOOD MENU</span></p><h2 data-i18n="menuTitle">What are you <em>craving?</em></h2></div><p data-i18n="menuIntro">Add items from as many listed restaurants as you like. Your selections stay together in one cart.</p></div>
+      <div class="category-list" id="categoryList"></div><div class="menu-grid" id="menuGrid"></div>
+    </section>
+    <section class="promo section-wrap" id="how"><div class="promo-image"></div><div class="promo-copy"><p class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="howEyebrow">HOW IT WORKS</span></p><h2 data-i18n="howTitle">You choose.<br><em>We pick it up.</em></h2><p data-i18n="howText">Choose dishes from the available restaurant menus, enter your hotel details and send your order. We confirm availability and the distance-based service charge with you on WhatsApp before purchasing.</p><a class="button button-dark" href="#menu" data-i18n="startOrder">Start your order <span>↗</span></a></div></section>
+    <section class="cta section-wrap"><div><p class="eyebrow"><span class="eyebrow-line"></span><span data-i18n="ctaEyebrow">READY TO ORDER?</span></p><h2 data-i18n="ctaTitle">Your favourites,<br>from more than one place.</h2></div><a class="button button-primary" href="#restaurants" data-i18n="browse">Browse restaurants <span>↗</span></a></section>
+  </main>
+  <footer class="footer"><a class="brand" href="#"><span class="brand-mark">F</span><span id="footerBrand">Food Hub</span></a><p data-i18n="footerText">Your food, picked up and delivered with care.</p><div><span id="footerLocation">Makkah, Saudi Arabia</span><span>•</span><a id="footerPhone" href="#">WhatsApp</a></div><small>© <span id="year"></span> <span id="copyrightName">Food Hub</span>. <span data-i18n="rights">All rights reserved.</span></small></footer>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart" aria-hidden="true">
+    <div class="drawer-head"><div><p class="eyebrow">YOUR SELECTION</p><h3 data-i18n="cartTitle">Your order</h3></div><button id="closeCart" class="close-button" aria-label="Close cart">×</button></div>
+    <div id="cartItems" class="cart-items"><p class="empty-cart">Your cart is waiting for something delicious.</p></div>
+    <div class="cart-bottom">
+      <div class="subtotal"><span data-i18n="foodSubtotal">Food subtotal</span><strong id="cartSubtotal">0 SAR</strong></div>
+      <p class="cart-hint" data-i18n="feeHint">Delivery service charge depends on your hotel delivery zone. We confirm it on WhatsApp.</p>
+      <button class="button button-primary checkout-button" id="checkoutButton" data-i18n="checkout">Continue to WhatsApp ↗</button>
+    </div>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="config.js"></script><script src="script.js"></script>
+</body></html>
