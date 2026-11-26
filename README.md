@@ -1,39 +1,44 @@
-# Premium Multi-Restaurant Food Ordering Platform (GitHub Pages MVP)
+# Food Hub — owner-supplied restaurant menu catalogue
 
-This is a static, bilingual (English/Arabic) multi-restaurant ordering website prototype. It preserves the original premium charcoal/cream/orange visual design while changing the business flow to:
-- Multiple restaurant menus on one site
-- One shared cart containing items from different restaurants
-- Hotel name and room number collected at checkout
-- Distance-based service charge selected by delivery zone
-- WhatsApp order message grouped by restaurant
+This update keeps the existing premium charcoal / cream / orange design and uses the restaurant menu images supplied by the owner.
+
+## Current first-stage features
+- Seven restaurant entries: Al Romansiah, KFC, McDonald's, Mama Ghazal, Pizza Hut, Al Tazaj and Lamma Burger.
+- The supplied menu images are displayed as full menu pages. No invented menu items, prices or stock data are added.
+- Customers can include food from multiple restaurants in one WhatsApp request by writing the restaurant, item and quantity in the order form.
+- Hotel name, room number, customer name and notes are collected in the order form.
+- English / Arabic language toggle.
+- WhatsApp number is configured in `config.js` (digits only).
+- No cart, fake delivery-zone prices, or demo food cards are shown.
 
 ## Files
-- `index.html` — website layout
-- `style.css` — original premium design system
-- `config.js` — editable restaurants, menu, WhatsApp number and delivery zones
-- `script.js` — restaurant filtering, cart, Arabic/English and WhatsApp checkout
+- `index.html` — page structure and order form
+- `style.css` — existing design plus menu catalogue and form styles
+- `config.js` — restaurant names and menu-image paths
+- `script.js` — menu rendering, language toggle and WhatsApp order request
+- `assets/menus/` — restaurant menu images supplied by the owner
 
-## Customize before use
-1. Open `config.js`.
-2. Change `brandName`, `whatsapp`, and `location`.
-3. Replace demo restaurant names, descriptions, menu, prices and image URLs with accurate information you are authorized to publish.
-4. Edit `deliveryZones` and `fee` values to match your actual distance-based pricing. These current values are illustrative only.
-5. Test adding items from two different restaurants; the WhatsApp message should group them separately.
-6. Test checkout using your own WhatsApp number.
+## Add a restaurant menu image (current static version)
+1. Put the new image in `assets/menus/`.
+2. Add the restaurant and image path in the `restaurants` array in `config.js`.
+3. Commit and push the repository to GitHub Pages.
 
-WhatsApp format: country code + number, digits only (Saudi example: `9665XXXXXXXX`).
+This current static version still requires a code edit to add a restaurant. A true no-code Admin Panel needs a connected database and image storage (for example Supabase), plus secure admin authentication. Those credentials and connection have not been set up yet, so this package does not pretend that an Admin Panel is already working.
 
-## Publish on GitHub Pages
-1. Create a public repository.
-2. Upload all four files to the repository root.
-3. Go to Settings → Pages.
-4. Choose Deploy from a branch → `main` → `/ (root)` → Save.
-5. Open the published Pages URL.
+## Delivery charge
+No delivery-zone price is displayed because the actual distance zones and fees have not yet been confirmed. The order form asks the operator to confirm the final delivery service charge on WhatsApp before purchasing.
 
-## Important limitations / next stage
-- GitHub Pages is static hosting. This MVP does not store orders in a database, provide a live admin panel, automatically calculate road distance, process online payments, or provide live order tracking.
-- The customer chooses a delivery zone and the site shows an estimated service charge. Confirm the final charge and food availability manually on WhatsApp before purchasing.
-- Checkout opens WhatsApp with a prepared message. The customer must press Send.
-- A mixed multi-restaurant order can involve separate restaurant visits; confirm all items and timing before accepting.
-- Do not use restaurant logos, menu photos, trademarks or prices unless you have permission or another lawful basis. Confirm applicable local business, delivery and platform requirements before operating.
-- Demo menu items, photos, prices and delivery fees must be replaced before commercial launch.
+## Publish
+Upload the contents of this folder to the root of the existing GitHub repository, keeping `assets/menus/` intact. GitHub Pages should serve `index.html` from the repository root.
+
+
+## Menu image catalogue (corrected)
+- Al Romansiah: 1 page
+- KFC: 1 page
+- McDonald's: 3 pages
+- Mama Gajir: 3 pages
+- Lamma Burger: 1 page
+- Pizza Hut: 1 page
+- Al Tazaj: 1 page
+
+Restaurant menus are view-only image pages. Food item selection/cart is not enabled.
