@@ -27,3 +27,32 @@
 .fee-note{font-size:11px;color:var(--muted);line-height:1.7;margin:0}
 @media(max-width:800px){.restaurant-strip{grid-template-columns:repeat(2,1fr);gap:9px}.restaurant-tile{padding:12px 9px;gap:8px}.restaurant-logo{width:37px;height:37px}.restaurant-menu-grid{grid-template-columns:1fr}}
 @media(max-width:540px){.header-order{padding:9px 11px;font-size:10px}.restaurant-tile strong{font-size:10px}.restaurant-tile small{font-size:8px}.restaurant-menu-heading{padding:14px 13px 10px}.restaurant-menu-heading h3{font-size:19px}.order-section{padding-top:65px;padding-bottom:70px}.order-form{grid-template-columns:1fr;gap:13px}.full-field{grid-column:auto}}
+
+/* Mobile navigation menu fix */
+@media (max-width: 800px) {
+  .site-header {
+    position: sticky;
+    z-index: 100;
+  }
+
+  .desktop-nav.mobile-open {
+    display: flex !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 12px 5%;
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 10px 20px #00000010;
+  }
+
+  .desktop-nav.mobile-open a {
+    display: block;
+    padding: 13px 5px;
+  }
+}
+
